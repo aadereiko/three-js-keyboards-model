@@ -10,7 +10,7 @@ const RADIUS = 10;
 
 let camera = null;
 let angle = 0;
-const fromCameraDir2 = new Vector3();
+const fromCameraDir = new Vector3();
 
 const tempPlane = new Plane(new Vector3(0, 1, 0));
 const projectedPoint = new Vector3();
@@ -66,8 +66,8 @@ function handleKeysForModel(event) {
     }
 
     if (delta !== undefined) {
-      fromCameraDir2.unproject(camera).normalize();
-      tempPlane.projectPoint(fromCameraDir2, projectedPoint).normalize();
+      fromCameraDir.unproject(camera).normalize();
+      tempPlane.projectPoint(fromCameraDir, projectedPoint).normalize();
       robotRoot.position.add(projectedPoint.clone().multiplyScalar(delta));
       robotRoot.position.y = previousPosition.y;
     }
