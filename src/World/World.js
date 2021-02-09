@@ -16,6 +16,8 @@ let renderer;
 let scene;
 let loop;
 
+let boxes = null; 
+
 class World {
   constructor(container) {
     camera = createCamera();
@@ -34,7 +36,7 @@ class World {
     new Resizer(container, camera, renderer);
 
     const plane = createPlane();
-    const boxes = createRandomBoxes(15);
+    boxes = createRandomBoxes(15);
 
     const { axesHelper } = createHelpers();
 
@@ -45,7 +47,7 @@ class World {
   }
 
   async init() {
-    const robot = await createRobot(camera);
+    const robot = await createRobot(camera, boxes);
     robot.add(camera);
     loop.updatables.push(robot);
     scene.add(robot);
